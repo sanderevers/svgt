@@ -1,7 +1,7 @@
 {
-  "name": "svgt",
-  "version": "0.0.1",
-  "description": "Boilerplate for TypeScript projects (Node.js and browser modules)",
+  "name": "svgt-literal",
+  "version": "0.0.0",
+  "description": "SVG transformations",
   "author": "Sander Evers",
   "repository": "https://github.com/sanderevers/svgt",
   "license": "MIT",
@@ -18,10 +18,10 @@
     "ts-node": "ts-node",
     "docs": "typedoc --entryPoints src/main.ts",
     "build": "tsc -p tsconfig.json",
-    "build-all": "yarn clean && yarn build && yarn esbuild-node && yarn esbuild-browser",
+    "build-all": "npm run clean && npm run build && npm run esbuild-browser",
     "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
     "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
-    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
@@ -35,5 +35,10 @@
     "ts-node": "^10.7.0",
     "typedoc": "^0.22.15",
     "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@thi.ng/matrices": "^2.1.32",
+    "@thi.ng/vectors": "^7.5.23",
+    "htl": "^0.3.1"
   }
 }
