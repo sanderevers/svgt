@@ -21,16 +21,20 @@
     "build-all": "npm run clean && npm run build && npm run esbuild-browser",
     "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
     "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
-    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js"
+    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js",
+    "serve": "esbuild src/browser.ts --bundle --servedir=. --outdir=dist/esbuild"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
+    "@types/jsdom": "^20.0.1",
     "@types/node": "^17.0.26",
+    "@types/lodash": "^4.14.190",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "esbuild": "^0.14.38",
     "eslint": "^8.14.0",
     "jest": "27.0.0",
+    "jsdom": "^20.0.3",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "typedoc": "^0.22.15",
@@ -39,6 +43,7 @@
   "dependencies": {
     "@thi.ng/matrices": "^2.1.32",
     "@thi.ng/vectors": "^7.5.23",
-    "htl": "^0.3.1"
+    "htl": "^0.3.1",
+    "lodash": "^4.17.21"
   }
 }

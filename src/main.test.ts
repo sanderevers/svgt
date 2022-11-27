@@ -1,11 +1,20 @@
-// import { svgt,  } from './main'
+/**
+ * jest-environment jsdom
+ */
 
-test('the data is peanut butter', () => {
-    // const obj = svgt`<line x1=${10} y1=${20} ${30} ${""} x2=${40} y2=${50} ${60}/>`
-    // const svg = svgtBox(obj, 100, 100);
-    // console.log(svg);
-    // console.log(obj);
-    expect(1).toBe(1)
+import { svgt, svgtScreenBox  } from './main'
+import pick from 'lodash/pick';
+import {JSDOM} from 'jsdom';
+
+const dom = new JSDOM();
+const browser_globals = pick(dom.window, ['document', 'Node', 'NodeList', 'HTMLCollection', 'XMLSerializer']);
+Object.assign(globalThis, browser_globals);
+
+test('svgtScreenBox copies x,y coordinates', () => {
+    const obj = svgt`<line x1=${10} y1=${20} ${30} ${{}} x2=${40} y2=${50} ${60}/>`
+    const svg = svgtScreenBox(obj, 100, 100);
+    const out = new XMLSerializer().serializeToString(svg);
+    expect(out).toBe(`<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0,0 100,100"><line x1="10" y1="20" x2="40" y2="50"/></svg>`)
 });
 
 
