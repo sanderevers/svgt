@@ -8,8 +8,8 @@
   "keywords": [
     "svg"
   ],
-  "main": "./dist/tsc/main.js",
-  "types": "./dist/tsc/main.d.ts",
+  "main": "./dist/tsc/node.js",
+  "types": "./dist/tsc/node.d.ts",
   "browser": "./dist/esbuild/browser.js",
   "scripts": {
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
@@ -27,8 +27,8 @@
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "@types/jsdom": "^20.0.1",
-    "@types/node": "^17.0.26",
     "@types/lodash": "^4.14.190",
+    "@types/node": "^17.0.26",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "esbuild": "^0.14.38",
@@ -44,6 +44,7 @@
     "@thi.ng/matrices": "^2.1.32",
     "@thi.ng/vectors": "^7.5.23",
     "htl": "^0.3.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "mathjs": "^11.5.0"
   }
 }

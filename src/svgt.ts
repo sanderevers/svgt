@@ -33,7 +33,7 @@ function process_params(args:unknown[]) {
             const curvec = vecs.length-1;
             const curel = vecs[curvec].length;
             vecs[curvec].push(arg);
-            getargs.push(tvecs => tvecs[curvec][curel] ?? {});
+            getargs.push(tvecs => tvecs[curvec][curel] ?? '');
         } else {
             invec=false;
             if (typeof(arg)==='object' && Array.isArray(arg)) {

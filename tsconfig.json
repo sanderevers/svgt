@@ -19,6 +19,7 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "outDir": "./dist/tsc/",
+      "allowJs": true,
     "types": [
       "node",
       "jest"

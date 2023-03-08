@@ -1,14 +1,4 @@
-/**
- * jest-environment jsdom
- */
-
-import { svgt, svgtScreenBox  } from './main'
-import pick from 'lodash/pick';
-import {JSDOM} from 'jsdom';
-
-const dom = new JSDOM();
-const browser_globals = pick(dom.window, ['document', 'Node', 'NodeList', 'HTMLCollection', 'XMLSerializer']);
-Object.assign(globalThis, browser_globals);
+import { svgt, svgtScreenBox  } from './node'
 
 test('svgtScreenBox copies x,y coordinates', () => {
     const obj = svgt`<line x1=${10} y1=${20} ${30} ${{}} x2=${40} y2=${50} ${60}/>`
