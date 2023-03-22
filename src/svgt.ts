@@ -4,6 +4,7 @@ import {Vec} from "@thi.ng/vectors";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import {svg} from 'htl';
+import {ellipse_transform} from "./ellipse_transform";
 
 export type SVGT = (mat: Mat) => DocumentFragment[];
 
@@ -47,7 +48,18 @@ function process_params(args:unknown[]) {
             } else if (arg===null || arg===undefined) {
                 getargs.push(_tvecs => '')
             } else if (typeof(arg)==='object') {
-                getargs.push(_tvecs => arg); //Object.entries(arg).map(([k,v]) => `${k}="${v}"`).join(' '));
+                let newarg = {};
+                if (Object.keys(arg).includes('rxy')) {
+                    getargs.push((_tvecs,mat) => {
+                        const {css_transform, rxy_transform} = ellipse_transform(mat);
+                        const [rx,ry] = mulV([],rxy_transform,[...(<{rxy:number[]}>arg).rxy,0,0]);
+                        const style = `transform: matrix3d(${css_transform.join(',')})`;
+                        newarg = {...arg,rxy:undefined,style,rx,ry};
+                        return newarg;
+                    });
+                } else {
+                    getargs.push(_tvecs => arg);
+                }
             } else if (typeof(arg)==='function') {
                 getargs.push((_tvecs,mat) => arg(mat));
             } else {

@@ -11,10 +11,10 @@
       import {lookAt,frustum} from 'https://cdn.skypack.dev/@thi.ng/matrices';
       const p_attrs = {fill:'none',stroke:'black','stroke-width':1};
       const c_attrs = {cx:0, cy:0, stroke:'black','stroke-width':1, fill:'none'};
-      const circle = svgt.translate([0,0,1],svgt.cssTransform(svgt`<ellipse rx="${1}" ry="${1}${0}${0}" ${c_attrs}/>`));
-      const linex = svgt.translate([0,0,1],svgt.cssTransform(svgt`<line x1="0" y1="0" x2="${1}" y2="${0}" ${p_attrs}/>`))
-      const liney = svgt.translate([0,0,1],svgt.cssTransform(svgt`<line x1="0" y1="0" x2="${0}" y2="${1}" ${p_attrs}/>`))
-      const sqz = svgt`<polygon points="${[[-1,-1,1],[-1,1,1],[1,1,1],[1,-1,1]]}" ${p_attrs}/>${circle}${linex}${liney}`;
+      const circle = svgt.translate([0,0,1],svgt`<ellipse ${{rxy:[1,1],...c_attrs}}/>`);
+      // const linex = svgt.translate([0,0,1],svgt.cssTransform(svgt`<line x1="0" y1="0" x2="${1}" y2="${0}" ${p_attrs}/>`))
+      // const liney = svgt.translate([0,0,1],svgt.cssTransform(svgt`<line x1="0" y1="0" x2="${0}" y2="${1}" ${p_attrs}/>`))
+      const sqz = svgt`<polygon points="${[[-1,-1,1],[-1,1,1],[1,1,1],[1,-1,1]]}" ${p_attrs}/>${circle}`;
       const sqx = svgt.rotateY(0.5*Math.PI, sqz);
       const sqy = svgt.rotateX(-0.5*Math.PI, sqz);
       const view = lookAt([],[3,1,1],[0,0,0],[0,1,0]);
