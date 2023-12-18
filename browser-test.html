@@ -17,7 +17,7 @@
       const sqz = svgt`<polygon points="${[[-1,-1,1],[-1,1,1],[1,1,1],[1,-1,1]]}" ${p_attrs}/>${circle}`;
       const sqx = svgt.rotateY(0.5*Math.PI, sqz);
       const sqy = svgt.rotateX(-0.5*Math.PI, sqz);
-      const view = lookAt([],[3,1,1],[0,0,0],[0,1,0]);
+      const view = lookAt([],[0.5,1,1],[0,0,0],[0,1,0]);
       const project=frustum([],-1,1,-1,1,1.8,10);
       const sc = svgt.scale([0.5,0.5,0.5],svgt.g(sqx,sqz,sqy));
       const box = svgt.svgtBox(svgt.transform(sc,view),800,800);

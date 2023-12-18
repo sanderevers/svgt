@@ -1,4 +1,4 @@
-import {Mat, mulV} from '@thi.ng/matrices';
+import {concat, Mat, mulV, scale44} from '@thi.ng/matrices';
 import {Vec} from "@thi.ng/vectors";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -51,8 +51,8 @@ function process_params(args:unknown[]) {
                 let newarg = {};
                 if (Object.keys(arg).includes('rxy')) {
                     getargs.push((_tvecs,mat) => {
-                        const {css_transform, rxy_transform} = ellipse_transform(mat);
-                        const [rx,ry] = mulV([],rxy_transform,[...(<{rxy:number[]}>arg).rxy,0,0]);
+                        const {css_transform, rxy_transform} = ellipse_transform(concat([],mat,scale44([],[...(<{rxy:number[]}>arg).rxy,1,1])));
+                        const [rx,ry] = mulV([],rxy_transform,[1,1,0,0]);
                         const style = `transform: matrix3d(${css_transform.join(',')})`;
                         newarg = {...arg,rxy:undefined,style,rx,ry};
                         return newarg;
@@ -69,6 +69,8 @@ function process_params(args:unknown[]) {
     }
     return {vecs,getargs};
 }
+
+// '0.11 -.2 3 0 1 2'.replaceAll(/([\d\-\.]+)[\s,]([\d\-\.]+)(?:[\s,]([\d\-\.]+))?/g,(m,...args)=>args.slice(0,3).map(Number))
 
 const transform_vector: (mat:Mat) => (v:Vec) => [number,number] = (mat:Mat) => (v:Vec) => {
     const tv = mulV([],mat,v);
